@@ -54,4 +54,4 @@ As a user, I want to see a simple chart of historical data for selected currenci
 ACCEPTANCE CRITERIA
  I should see the monthly historical rates for the selected currencies for past year.
  I should see months on horizontal axis and Rates on vertical axis
- Monthly rate is calculated based on rate in last day of that mont
+ Monthly rate is calculCurrency Exchangerated based on rate in last day of that mont
