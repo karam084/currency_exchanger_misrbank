@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import {Currency} from "../Currency";
+import {CurrencyServiceComponent} from "../currency-service/currency-service/currency-service.component"
 
 @Component({
   selector: 'app-currency-selector',
@@ -7,17 +9,17 @@ import { Component } from '@angular/core';
 })
 export class CurrencySelectorComponent {
   public edited = true;
-  @Input() changeCurrency;
-  @Input() selectorId;
+  @Input() changeCurrency: any;
+  @Input() selectorId: any;
 
-  currencies;
+  currencies: string | any[] | undefined;
 
-  public selectedCurrency;
-  public elementCurrenciesList;
-  public findCurrency;
+  public selectedCurrency: Currency | undefined;
+  public elementCurrenciesList: HTMLElement = document.createElement('div');
+  public findCurrency: string = '';
   public ignoreFocusOut=false;
   public noResultsFind = false;
-  @ViewChild('search_input', {static: false}) search_input;
+  @ViewChild('search_input', {static: false}) search_input: { nativeElement: { focus: () => void; }; } | undefined;
 
   constructor(private changeDetector: ChangeDetectorRef,  public service: CurrencyServiceComponent) {
 
@@ -63,7 +65,7 @@ export class CurrencySelectorComponent {
     this.findCurrency="";
     this.ShowDropdown();
     this.changeDetector.detectChanges();
-    this.search_input.nativeElement.focus();
+    this.search_input?.nativeElement.focus();
     this.valueFinding();
   }
 
@@ -85,7 +87,7 @@ export class CurrencySelectorComponent {
 
   ngAfterViewInit(): void{
 
-    this.elementCurrenciesList = document.getElementById('currenciesList ' + this.selectorId)
+    this.elementCurrenciesList = document.getElementById(this.selectorId + "_list") as HTMLElement;
     this.selectCurrencyOnStart();
 
   }

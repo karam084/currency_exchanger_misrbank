@@ -1,17 +1,17 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 
 @Component({
   selector: 'app-currencies',
   templateUrl: './currencies.component.html',
-  styleUrls: ['./currencies.component.css']
+  styleUrls: ['../currency-selector.component.scss']
 })
-export class CurrenciesComponent {
+export class CurrenciesComponent{
 
-  @Input() selectCurrency;
-  @Input() currency;
+  @Input() selectCurrency: any;
+  @Input() currency: any;
 
 
-  public selectCurrencyFunc(currency){
+  public selectCurrencyFunc(currency: any){
     console.log(currency);
     this.selectCurrency(currency);
   }
